@@ -27,15 +27,15 @@ Route::get('/about-us', function () {
 Route::get('/contact-page', function (Request $request) {
 
 
-    dd(
-        $request->path(),
-        $request->is('contact-page'),
-        $request->ip(),
-        $request->schemeAndHttpHost(),
-        $request->cookie(),
-        $request->bearerToken(),
+    // dd(
+    //     $request->path(),
+    //     $request->is('contact-page'),
+    //     $request->ip(),
+    //     $request->schemeAndHttpHost(),
+    //     $request->cookie(),
+    //     $request->bearerToken(),
 
-    );
+    // );
     // $mobile = [
 
     //     '01986112069',
@@ -69,8 +69,19 @@ Route::get('/contact-page', function (Request $request) {
     //     'products',
     //     'products_count',
     // ));
-    return view('contact');
+    $data = [
+        'name' => 'ahsan',
+        'roll' => '180119'
+
+
+    ];
+
+    return response($data)
+        ->header('Content-Type', 'application/json')
+        ->cookie('My_IDCard', 'ahsan', '2');
 })->name('contact');
+
+
 Route::get('/services-page', function () {
     return view('service');
 })->name('service');
