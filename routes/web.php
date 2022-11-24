@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,60 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', ['id' => 'Home page', 'name' => 'Ahsan Al Bashar']);
 })->name('home');
+
 Route::get('/about-us', function () {
-    return view('about');
+
+    $name = "Ahsan";
+    $mobile = "01986112069";
+    return view('about', compact('name', 'mobile'));
 })->name('about');
-Route::get('/contact-page', function () {
+Route::get('/contact-page', function (Request $request) {
+
+
+    dd(
+        $request->path(),
+        $request->is('contact-page'),
+        $request->ip(),
+        $request->schemeAndHttpHost(),
+        $request->cookie(),
+        $request->bearerToken(),
+
+    );
+    // $mobile = [
+
+    //     '01986112069',
+    //     '01996324808',
+    //     '01726562839',
+    //     '01726562839',
+    // ];
+    // $mobile = 5;
+    // $color = 'red';
+
+    // $products = [
+    //     1 => [
+    //         'color' => 'Red',
+    //         'size' => 'Small',
+    //         'price' => '1200',
+    //     ],
+
+    //     2 => [
+    //         'color' => 'green',
+    //         'size' => 'Big',
+    //         'price' => '1000',
+
+    //     ],
+    // ];
+
+    // $products_count = count($products);
+
+    // return view('contact', compact(
+    //     'mobile',
+    //     'color',
+    //     'products',
+    //     'products_count',
+    // ));
     return view('contact');
 })->name('contact');
 Route::get('/services-page', function () {
