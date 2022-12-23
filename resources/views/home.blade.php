@@ -1,6 +1,5 @@
 @extends('master')
 
 @section('content')
-    <h1>{{ $id }}</h1>
-    <a>{{ $name }}</a>
+    <h1>Hi It is Home-Ground</h1>
 @endsection
