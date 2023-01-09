@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,4 @@ Route::get('/services-page', function () {
 })->name('service');
 
 Route::resource('/category', CategoryController::class);
+Route::resource('/subcategory', SubCategoryController::class);
