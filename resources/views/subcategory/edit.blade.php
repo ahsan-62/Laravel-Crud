@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="row">
-        @if (Session('message'))
+        @if (Session('status'))
             <div class="bg-danger">
-                {{ session('message') }}
+                {{ session('status') }}
             </div>
         @endif
         <div class="d-flex justify-content-start my-4">
@@ -14,16 +14,18 @@
         </div>
         <div class="col-8 m-auto my-3">
             <div class="card p-4">
-                <form action="{{ route('subcategory.store') }}" method="POST">
+                <form action="{{ route('subcategory.update', ['subcategory' => $subcategory->id]) }}" method="POST">
+                    @method('PUT')
                     @csrf
 
                     <div class="mb-3">
                         <select class="form-select @error('category_id') is-invalid
                     @enderror"
                             name="category_id">
-                            <option selected>Select Category</option>
+                            <option>Select Category</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" @if ($category->id == $subcategory->category_id) selected @endif>
+                                    {{ $category->name }}</option>
                             @endforeach
                         </select>
                         @error('category_id')
@@ -48,7 +50,8 @@
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" name="is_active" type="checkbox" id="isActive">
+                        <input class="form-check-input" name="is_active" @if ($subcategory->is_active) checked @endif
+                            type="checkbox" id="isActive">
                         <label class="form-check-label" for="isActive">
                             Active/InActive
                         </label>

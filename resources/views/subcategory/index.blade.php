@@ -12,7 +12,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
-                        <th scope="col">Cat Id</th>
+                        <th scope="col">Category Name</th>
                         <th scope="col">Subcatgory Name</th>
                         <th scope="col">Created at</th>
                         <th scope="col">Action</th>
@@ -28,6 +28,14 @@
                             <td>
                                 <a href="{{ route('subcategory.edit', ['subcategory' => $subcategory->id]) }}"
                                     class="btn btn-info">Edit</a>
+                                <form action="{{ route('subcategory.destroy', ['subcategory' => $subcategory->id]) }}"
+                                    method="post">
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <button type="submit" class="btn btn-danger">Del</button>
+
+                                </form>
                             </td>
                         </tr>
                     @endforeach
