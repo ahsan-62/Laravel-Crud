@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryStoreRequest;
 use App\Models\Category;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -17,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -50,8 +52,9 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->category_name),
             'is_active' => $request->filled('is_active')
         ]);
-        Session::flash('status', 'Category Created Successfully.....');
-        return back();
+        // Session::flash('status', 'Category Created Successfully.....');
+        Toastr::success('Category created successfully.....');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -73,7 +76,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        $category = Category::find($id);
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -85,7 +90,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $category = Category::find($id);
+
+        $category->update([
+            'name' => $request->category_name,
+            'slug' => Str::slug($request->category_name),
+            'is_active' => $request->filled('is_active')
+        ]);
+        Toastr::success('Category Updated successfully.....');
+        // Session::flash('status', 'Category Updated Successfully.....');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -96,6 +111,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+        Category::find($id)->delete();
+        Session::flash('status', 'category Deleted Succesfully');
+        return redirect()->route('category.index');
     }
 }

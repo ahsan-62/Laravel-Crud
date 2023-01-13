@@ -6,6 +6,7 @@ use App\Http\Requests\SubCategoryStoreRequest;
 use App\Http\Requests\SubCategoryUpdateRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -50,7 +51,8 @@ class SubCategoryController extends Controller
             'is_active' => $request->filled('is_active')
 
         ]);
-        Session::flash('message', 'Sub Category Created Successfully.....');
+        // Session::flash('message', 'Sub Category Created Successfully.....');
+        Toastr::success('Category created successfully!');
         return back();
     }
 
@@ -100,7 +102,7 @@ class SubCategoryController extends Controller
             'is_active' => $request->filled('is_active')
 
         ]);
-        Session::flash('status', 'Sub Category updated Successfully.....');
+        Session::flash('message', 'Sub Category updated Successfully.....');
         return redirect()->route('subcategory.index');
     }
 

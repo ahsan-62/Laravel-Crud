@@ -195,7 +195,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
     ],
+    'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
 
     /*
     |--------------------------------------------------------------------------
