@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,4 +26,11 @@ class FrontController extends Controller
     //         'users' => $users
     //     ]);
     // }
+
+
+    public function books()
+    {
+    $books=Book::all();
+    return $books;
+    }
 }

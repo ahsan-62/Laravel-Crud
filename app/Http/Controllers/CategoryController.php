@@ -18,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        // $categories = Category::all();
+        $categories = Category::withCount('subcategories')->get(['id', 'name', 'created_at']);
         return view('category.index', compact('categories'));
     }
 
@@ -113,7 +114,8 @@ class CategoryController extends Controller
     {
         // dd($id);
         Category::find($id)->delete();
-        Session::flash('status', 'category Deleted Succesfully');
+        // Session::flash('status', 'category Deleted Succesfully');
+        Toastr::warning('Category Deleted successfully.....');
         return redirect()->route('category.index');
     }
 }

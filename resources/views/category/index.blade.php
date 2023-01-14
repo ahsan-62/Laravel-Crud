@@ -16,6 +16,7 @@
                     <tr>
                         <th scope="col">No.</th>
                         <th scope="col">Category Name</th>
+                        <th scope="col">No Of Subcategories</th>
                         <th scope="col">Created at</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -25,6 +26,11 @@
                         <tr>
                             <th scope="row">{{ $category->id }}</th>
                             <td>{{ $category->name }}</td>
+
+                            {{-- query withCount --}}
+                            {{-- <td>{{ $category->subcategories->count() }}</td> --}}
+
+                            <td>{{ $category->subcategories_count }}</td>
                             <td>{{ $category->created_at->diffForHumans() }}</td>
                             <td>
                                 <a href="{{ route('category.edit', ['category' => $category->id]) }}"
