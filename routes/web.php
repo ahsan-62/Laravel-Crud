@@ -35,5 +35,6 @@ Route::get('/services-page', function () {
 
 Route::resource('/category', CategoryController::class);
 Route::resource('/subcategory', SubCategoryController::class);
+Route::get('/category/{category_id}/restore',[CategoryController::class,'restore'])->name('category.restore');
 
 Route::get('books',[FrontController::class,('books')]);
