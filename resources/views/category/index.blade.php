@@ -1,23 +1,24 @@
 @extends('master')
 
-@section('title', 'Category-Create-Page')
+@section('title', 'Category-Index-Page')
+
 @push('admin_style')
 @endpush
+
 @section('content')
     <div class="row">
-
-        <div class="col-8 my-4">
-
+        <div class="d-flex justify-content-end my-4">
             <a href="{{ route('category.create') }}" class="btn btn-success">Create Category</a>
         </div>
         <div class="col-8 m-auto">
-            <table class="table table-hover table-dark">
+            <h4 class="">Category Table</h4>
+            <table class="table tab-color">
                 <thead>
                     <tr>
-                        <th scope="col">No.</th>
+                        <th scope="col">#</th>
                         <th scope="col">Category Name</th>
-                        <th scope="col">No Of Subcategories</th>
-                        <th scope="col">Created at</th>
+                        <th scope="col"># of SubCategory</th>
+                        <th scope="col">Created</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -26,32 +27,35 @@
                         <tr>
                             <th scope="row">{{ $category->id }}</th>
                             <td>{{ $category->name }}</td>
-
-                            {{-- query withCount --}}
                             {{-- <td>{{ $category->subcategories->count() }}</td> --}}
-
                             <td>{{ $category->subcategories_count }}</td>
                             <td>{{ $category->created_at->diffForHumans() }}</td>
+
                             <td>
-                                <a href="{{ route('category.edit', ['category' => $category->id]) }}"
-                                    class="btn btn-warning">Edit</a>
-                                <form action="{{ route('category.destroy', ['category' => $category->id]) }}"
-                                    method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip"
-                                        title='Delete'>Del</button>
+                                <div class="d-flex justify-content-center">
+                                    {{-- <a href="{{ route('category.show', ['category' => $category->id]) }}"
+                                        class="btn btn-info">Show</a> --}}
+                                    <a href="{{ route('category.edit', ['category' => $category->id]) }}"
+                                        class="btn btn-warning">Edit</a>
+                                    <form action="{{ route('category.destroy', ['category' => $category->id]) }}"
+                                        method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip"
+                                            title='Delete'>Del</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
-
                 </tbody>
             </table>
         </div>
-
-
     </div>
+
+
 @endsection
+
 
 @push('admin_script')
     <script>
