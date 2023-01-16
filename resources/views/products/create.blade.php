@@ -9,23 +9,27 @@
                 <div class="card-body">
                     <h4 class="card-title">Product Add</h4>
 
-                    <form action="" method="post">
+                    <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
-
                             <label for="" class="form-label">Select Category</label>
-
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" name="category_id" aria-label="Default select example">
                                 <option selected>Select a Category</option>
-                                <option value="1">One</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+
                             </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Select Sub Category</label>
 
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" name="subcategory_id" aria-label="Default select example">
                                 <option selected>Select a Sub Category</option>
-                                <option value="1">One</option>
+                                @foreach ($subcategories as $subcategory)
+                                    <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -47,20 +51,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Image</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <input class="form-control" name="image" type="file" id="formFile">
                         </div>
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Add Product</button>
                         </div>
 
-
-
-
-
-
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
