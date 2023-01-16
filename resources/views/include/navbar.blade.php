@@ -26,6 +26,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('subcategory.index') }}">Subcategories</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('products.create') }}">Product Create</a>
+                </li>
             </ul>
         </div>
     </div>

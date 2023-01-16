@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use App\Models\Book;
 use Illuminate\Http\Request;
@@ -36,5 +37,8 @@ Route::get('/services-page', function () {
 Route::resource('/category', CategoryController::class);
 Route::resource('/subcategory', SubCategoryController::class);
 Route::get('/category/{category_id}/restore',[CategoryController::class,'restore'])->name('category.restore');
+Route::get('/category/{category_id}/forceDelete',[CategoryController::class,'forceDelete'])->name('category.forcedelete');
+
+Route::resource('/products', ProductController::class);
 
 Route::get('books',[FrontController::class,('books')]);

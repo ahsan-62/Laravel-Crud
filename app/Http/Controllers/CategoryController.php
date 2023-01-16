@@ -128,4 +128,12 @@ class CategoryController extends Controller
         Toastr::warning('Category Restore successfully.....');
         return back();
      }
+
+     public function forceDelete($category_id)
+     {
+         //dd($category_id);
+         Category::onlyTrashed()->find($category_id)->forceDelete();
+         Toastr::success('Category Deleted permanently!');
+         return back();
+     }
 }
